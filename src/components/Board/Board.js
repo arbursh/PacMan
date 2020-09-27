@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-class Board extends Comonent {
-  redner() {
+class Board extends Component {
+  render() {
     return <div>Siemanko</div>;
   }
 }
