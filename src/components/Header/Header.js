@@ -1,8 +1,10 @@
 import React from "react";
 
+import './style.css'
+
 function Header({score}) {
     return (
-        <div>
+        <div className="headear">
             <span>SCORE: {score}</span>
         </div>
     )
