@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 
-import './style.css'
+import Pacman from "../Pacman/Pacman";
+import "./style.css";
 
 class Board extends Component {
   render() {
-    return <div className="board">
+    return (
+      <div className="board">
         <div>Siemanko</div>
         {/* <Food />  */}
-        {/* <Pacman/> */}
+        <Pacman />
         {/* <Ghost/> */}
-
-    </div>;
+      </div>
+    );
   }
 }
 
