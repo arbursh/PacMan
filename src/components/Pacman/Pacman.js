@@ -12,24 +12,70 @@ class Pacman extends Component {
     },
   };
 
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.pacmanRef = React.createRef();
   }
 
   componentDidMount() {
-    this.pacmanRef.current.focus()
+    this.pacmanRef.current.focus();
   }
 
   handleKeyDown = (event) => {
     console.log(event.keyCode, event.key);
-    // this.setState({
-    //   direction: event.key
-    // })
+
+    const currentTop = this.state.position.top;
+    const currentLeft = this.state.position.left;
+    const { step } = this.props;
+
+    //39 ArrowRight
+    //40 ArrowDown
+    // 37 ArrowLeft
+    // 38 Arrorup
+
+    switch (event.key) {
+      case "ArrowRight":
+        this.setState({
+          position: {
+            top: currentTop,
+            left: currentLeft + step,
+          },
+          direction: "right",
+        });
+        break;
+      case "ArrowDown":
+        this.setState({
+          direction: "down",
+          position: {
+            top: currentTop + step,
+            left: currentLeft
+          }
+        });
+        break;
+      case "ArrowLeft":
+        this.setState({
+          direction: "left",
+          position: {
+            top: currentTop,
+            left: currentLeft - step
+          }
+        });
+        break;
+      case "ArrowUp":
+        this.setState({
+          direction: "up",
+          position: {
+            top: currentTop - step,
+            left: currentLeft
+          }
+        });
+        break;
+      default:
+    }
   };
 
   render() {
-    const {direction, position} = this.state
+    const { direction, position } = this.state;
     return (
       <div
         ref={this.pacmanRef}
