@@ -12,6 +12,75 @@ export class Ghost extends Component {
     },
   };
 
+  componentDidMount() {
+    this.changeDirectionInterval = setInterval(this.changeDirection, 500);
+    this.moveInterval = setInterval(this.move, 500)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.changeDirectionInterval);
+    clearInterval(this.moveInterval)
+  }
+
+  changeDirection = () => {
+    const arrayOfMovment = ["right", "up", "down", "left"];
+    const movement = Math.floor(Math.random() * 4);
+
+    this.setState({
+      direction: arrayOfMovment[movement],
+    });
+  };
+
+  move = () => {
+    const currentTop = this.state.position.top;
+    const currentLeft = this.state.position.left;
+    const { direction } = this.state;
+    const { step, size, border, topScoreBoardHeight } = this.props;
+
+    switch (direction) {
+      case "right":
+        this.setState({
+          position: {
+            top: currentTop,
+            left: Math.min(
+              currentLeft + step,
+              window.innerWidth - border - size
+            ),
+          },
+        });
+        break;
+      case "down":
+        this.setState({
+          position: {
+            top: Math.min(
+              currentTop + step,
+              window.innerHeight - border - size - topScoreBoardHeight
+            ),
+            left: currentLeft,
+          },
+        });
+        break;
+      case "left":
+        this.setState({
+          position: {
+            top: currentTop,
+            left: Math.max(currentLeft - step, 0),
+          },
+        });
+        break;
+      case "up":
+        this.setState({
+          direction: "up",
+          position: {
+            top: Math.max(currentTop - step, 0),
+            left: currentLeft,
+          },
+        });
+        break;
+      default:
+    }
+  };
+
   render() {
     const { color } = this.props;
 
