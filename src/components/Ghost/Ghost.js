@@ -16,7 +16,7 @@ export class Ghost extends Component {
     const { color } = this.props;
 
     return (
-      <div className="ghost">
+      <div style={this.state.position} className="ghost">
         <GhostSvg className={`ghost-${color}`} />
       </div>
     );
