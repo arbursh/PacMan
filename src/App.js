@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <Header score={score} />
-      <Board/>
+      <Board setScore={setScore} /> //4:02
     </div>
   );
 }
