@@ -26,7 +26,7 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    this.intervalFood = setInterval(this.lookForEat, 25);
+    this.intervalFood = setInterval(this.lookForEat, 500);
   }
 
   componentWillUnmount() {
@@ -108,9 +108,9 @@ class Board extends Component {
         {foods}
         <Pacman ref={this.pacmanRef} />
         <Ghost color="yellow" />
-        {/* <Ghost color="red" />
+        <Ghost color="red" />
         <Ghost color="pink" />
-        <Ghost color="blue" /> */}
+        <Ghost color="blue" />
       </div>
     );
   }
@@ -119,7 +119,7 @@ class Board extends Component {
 //TOdo reaftor and move to config
 Board.defaultProps = {
   foodSize: 50,
-  border: 10 * 2,
+  border: 5 * 2,
   topScoreBoardHeight: 50,
 };
 
